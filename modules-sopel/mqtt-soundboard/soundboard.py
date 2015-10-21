@@ -63,6 +63,9 @@ def single_search(to_find, index):
 	search_res = search(to_find, index)
 	return (search_res[-1], len(search_res))
 
+def _gen_index_path(path):
+	return = "/tmp/" + hashlib.sha256(args.path.encode()).hexdigest() + ".json"
+
 
 def main():
 	import argparse
@@ -77,7 +80,7 @@ def main():
 	parser.set_defaults(rebuild_index=False, use_index=False)
 	args = parser.parse_args()
 
-	index_path = "/tmp/" + hashlib.sha256(args.path.encode()).hexdigest() + ".json"
+	index_path = _gen_index_path(path)
 
 	if args.rebuild_index:
 		index = build_index_object(args.path)
