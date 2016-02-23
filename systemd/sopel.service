@@ -1,0 +1,13 @@
+[Unit]
+Description=Sopel IRC Bot
+
+[Service]
+Environment=VIRTUAL_ENV=%h/loom/venv
+Environment=PATH=$VIRTUAL_ENV/bin:$PATH
+ExecStart="/usr/bin/env python3 $VIRTUAL_ENV/bin/sopel"
+#ExecStart=/home/space/loom/venv/bin/sopel
+Restart=always
+
+[Install]
+WantedBy=closed.target
+
