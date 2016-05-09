@@ -10,6 +10,7 @@ sounboard.py - Search through File Metadata
 import os, io, sys
 import json
 
+import hashlib
 import logging
 logging.basicConfig(level=logging.ERROR)
 log = logging.getLogger(__name__)
@@ -64,12 +65,10 @@ def single_search(to_find, index):
 	return (search_res[-1], len(search_res))
 
 def _gen_index_path(path):
-	return = "/tmp/" + hashlib.sha256(args.path.encode()).hexdigest() + ".json"
-
+	return "/tmp/" + hashlib.sha256(str(path).encode()).hexdigest() + ".json"
 
 def main():
 	import argparse
-	import hashlib
 
 	parser = argparse.ArgumentParser(description="Soundboard CLI usage.")
 	parser.add_argument('--rebuild-index-file',	dest='rebuild_index',	action='store_true',	help='Update index file.')
@@ -80,7 +79,7 @@ def main():
 	parser.set_defaults(rebuild_index=False, use_index=False)
 	args = parser.parse_args()
 
-	index_path = _gen_index_path(path)
+	index_path = _gen_index_path(args.path.encode())
 
 	if args.rebuild_index:
 		index = build_index_object(args.path)
