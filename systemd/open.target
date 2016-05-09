@@ -1,0 +1,6 @@
+# This file is part of loom,
+# hacker^Wspace automation kit
+
+[Unit]
+Description=Sorry we're open!
+Wants=lifesupport.target
